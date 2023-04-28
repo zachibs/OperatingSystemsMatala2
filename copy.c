@@ -4,22 +4,16 @@
 
 #define BUFFER 256
 
-int copy_func(char* firstFile, char* secondFile, int vFlag, int fFlag) {
+int copy_func(char* firstFile, char* secondFile, int fFlag) {
 
     FILE *sourceFile = fopen(firstFile, "rb");
     if (sourceFile == NULL) {
-        if (vFlag) {
-            printf("general failure\n");
-        }
         return 1;
     }
 
     if (!fFlag) {
         if (fopen(secondFile, "r") != NULL) {
-            if (vFlag) {
-                printf("target file exist\n");
-            }
-            return 1;
+            return 2;
         }
     }
 
@@ -27,9 +21,6 @@ int copy_func(char* firstFile, char* secondFile, int vFlag, int fFlag) {
     FILE *targetFile = fopen(secondFile, "wb");
     if (targetFile == NULL) {
         fclose(sourceFile);
-        if (vFlag) {
-            printf("general failure\n");
-        }
         return 1;
     }
 
@@ -41,6 +32,8 @@ int copy_func(char* firstFile, char* secondFile, int vFlag, int fFlag) {
 
     fclose(sourceFile);
     fclose(targetFile);
+
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -62,7 +55,18 @@ int main(int argc, char *argv[]) {
         fFlag = 1;
     }
 
-    int returnedNum = copy_func(argv[1], argv[2], vFlag, fFlag);
+    int returnedNum = copy_func(argv[1], argv[2], fFlag);
+
+    if (vFlag){
+        if (returnedNum == 1){
+            printf("general failure\n");
+        } else if(returnedNum == 2){
+            printf("target file exist\n");
+            returnedNum = 1;
+        } else{
+            printf("success\n");
+        }
+    }
 
     return returnedNum;
 }
