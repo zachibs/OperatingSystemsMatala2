@@ -33,7 +33,7 @@ int copy_func(char* firstFile, char* secondFile, int iFlag){
         }
     }
 
-    if (!((fgets(firstBuffer, BUFFER, file1) == NULL) && (fgets(secondBuffer, BUFFER, secondFile) == NULL))){
+    if (!((fgets(firstBuffer, BUFFER, file1) == NULL) && (fgets(secondBuffer, BUFFER, file2) == NULL))){
         isNotSame = 1;
     }
 

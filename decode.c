@@ -31,12 +31,10 @@ int main(int argc, char *argv[]){
     if(!strcmp(libName, "codecA")){
         libString = "./libcodecA.so";
         dlopenHandler = dlopen(libString, RTLD_LAZY);
-    }
-    else if(!strcmp(libName, "codecB")){
+    }else if(!strcmp(libName, "codecB")){
         libString = "./libcodecB.so";
         dlopenHandler = dlopen(libString, RTLD_LAZY);
-    }
-    else{
+    }else{
         printf("Arguements enterd are not sufficient \n");
         return -1; 
     }

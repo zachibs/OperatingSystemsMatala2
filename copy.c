@@ -45,7 +45,6 @@ int main(int argc, char *argv[]){
     
     int fFlag = 0;
     int vFlag = 0;
-    char *firstFile, *secondFile;
 
     if ((strcmp(argv[3], "-v") == 0) || (strcmp(argv[4], "-v") == 0)){
         vFlag = 1;
